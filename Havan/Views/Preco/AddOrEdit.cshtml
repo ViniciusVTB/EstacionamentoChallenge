@@ -1,0 +1,56 @@
+﻿@model Havan.Models.Preco
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Parametrização</h1>
+
+<h4>Preço</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PrecoHora" class="control-label"></label>
+                <input asp-for="PrecoHora" class="form-control" />
+                <span asp-validation-for="PrecoHora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecoHoraAdicional" class="control-label"></label>
+                <input asp-for="PrecoHoraAdicional" class="form-control" />
+                <span asp-validation-for="PrecoHoraAdicional" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInicial" class="control-label"></label>
+                <input asp-for="DataInicial" class="form-control" />
+                <span asp-validation-for="DataInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFinal" class="control-label"></label>
+                <input asp-for="DataFinal" class="form-control" />
+                <span asp-validation-for="DataFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" onclick="AddOrEdit(event)" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="~/js/Preco.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@Html.Hidden("url", @Url.Action("AddOrEdit", "Preco"))
+@Html.Hidden("urlIndex", @Url.Action("Index", "Preco"))
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

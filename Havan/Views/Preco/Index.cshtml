@@ -1,0 +1,52 @@
+﻿@model IEnumerable< Havan.Models.Preco>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Parametrização de preços</h1>
+
+<p>
+    <a asp-action="AddOrEdit">Adicionar vigencia</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoHora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoHoraAdicional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFinal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoHoraAdicional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFinal)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

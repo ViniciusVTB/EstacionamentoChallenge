@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Havan.Models.EntradaVeiculo>
+
+@{
+    ViewData["Title"] = "Historico";
+}
+
+<h1>Historico</h1>
+
+<form method="get" asp-action="Historico">
+    <p>
+        <input type="search" placeholder="Digite a placa ou o nome do condutor" value="@ViewData["GetEntradasDetails"]" name="busca.Search" style="width:500px" />
+        <a asp-action="Historico"> Todos os veiculos</a>
+    </p>
+    <p>
+        <input type="checkbox" name="busca.Ativo" value="@ViewData["GetEntradasDetails"]" />  Buscar finalizados
+    </p>
+    <p>
+        <input type="date" name="busca.Data" value="@ViewData["GetEntradasDetails"]" /> Buscar pela data
+    </p>
+    <p>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataSaida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permanencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorHora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorHoraAdicional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Condutor.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSaida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Permanencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorHoraAdicional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Condutor.Nome)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<script src="~/js/Busca.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@Html.Hidden("url", @Url.Action("Historico", "EntradaVeiculo"))

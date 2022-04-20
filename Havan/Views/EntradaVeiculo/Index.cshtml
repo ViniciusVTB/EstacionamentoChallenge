@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Havan.Models.EntradaVeiculo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Veiculos em aberto</h1>
+
+<p>
+    <a asp-action="Create">Nova entrada de veiculo</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Digite a placa" value="@ViewData["GetEntradasDetails"]" name="search" style="width:500px" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index"> Todos os veiculos</a>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEntrada)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEntrada)
+            </td>
+            <td>
+                <a onclick="AddCondutor(event, @item.Id)" asp-route-id="@item.Id">Finalizar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@Html.Hidden("url", @Url.Action("Create", "Condutor"))
+@Html.Hidden("urlFinalizar", @Url.Action("Finalizar", "EntradaVeiculo"))
+
+<script src="~/js/AddCondutor.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
